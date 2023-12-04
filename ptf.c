@@ -47,13 +47,14 @@ int _printf(const char *format, ...)
 					cnt += 2;
 					break;
 			}
-			else
-			{
-				putchar(*format);
-				cnt++;
-			}
-			format++;
 		}
-		va_end(args);
-		return (cnt);
+		else
+		{
+			putchar(*format);
+			cnt++;
+		}
+		format++;
 	}
+	va_end(args);
+	return (cnt);
+}
