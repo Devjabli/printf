@@ -15,13 +15,15 @@ int _printf(const char *format, ...)
 	va_start(args, format);
 
 
+	if (*format == '\0')
+		return (-1);
+
 	while (*format)
 	{
 		if (*format == '%')
 		{
 			format++;
-			if (format == "\0" || format == NULL)
-				return (-1);
+
 			switch (*format)
 			{
 				case 'c':
