@@ -1,55 +1,59 @@
 #include "main.h"
 
-int _printf(const char *format, ...) {
-    va_list args;
-    va_start(args, format);
+/**
+ * _printf - takes two arguments format and list of arguments
+ * @format: takes count argument
+ * Return: cnt
+*/
 
-    int count = 0;
+int _printf(const char *format, ...)
+{
+	va_list args;
+	int cnt = 0;
 
-    while (*format) {
-        if (*format == '%') {
-            format++; // Move past '%'
-            switch (*format) {
-                case 'c': {
-                    int c = va_arg(args, int);
-                    putchar(c);
-                    count++;
-                    break;
-                }
-                case 's': {
-                    char *str = va_arg(args, char *);
-                    fputs(str, stdout);
-                    count += strlen(str);
-                    break;
-                }
-				case 'd': {
-					double d = va_arg(args, double);
-					putchar(d);
-					count++;
+	va_start(args, format);
+
+
+	while (*format)
+	{
+		if (*format == '%')
+		{
+			format++;
+			switch (*format)
+			{
+				case 'c':
+					{
+						int c = va_arg(args, int);
+
+						putchar(c);
+						cnt++;
+						break;
+					}
+				case 's':
+					{
+						char *str = va_arg(args, char *);
+
+						fputs(str, stdout);
+						cnt += strlen(str);
+						break;
+					}
+				case '%':
+					putchar('%');
+					cnt++;
 					break;
-
-				}
-                case '%':
-                    putchar('%');
-                    count++;
-                    break;
-
-                default:
-                    // Handle unknown specifier
-                    putchar('%');
-                    putchar(*format);
-                    count += 2;
-                    break;
-            }
-        } else {
-            putchar(*format);
-            count++;
-        }
-
-        format++;
-    }
-
-    va_end(args);
-
-    return count;
-}
+				default:
+					putchar('%');
+					putchar(*format);
+					cnt += 2;
+					break;
+			}
+			else
+			{
+				putchar(*format);
+				cnt++;
+			}
+			format++;
+		}
+		va_end(args);
+		return (cnt);
+	}
