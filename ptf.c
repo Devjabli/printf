@@ -6,6 +6,7 @@
  * Return: cnt
 */
 
+
 int _printf(const char *format, ...)
 {
 	va_list args;
@@ -18,6 +19,9 @@ int _printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
+			if (*format == '\0')
+				break;
+
 			format++;
 			switch (*format)
 			{
@@ -58,3 +62,4 @@ int _printf(const char *format, ...)
 	va_end(args);
 	return (cnt);
 }
+
