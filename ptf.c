@@ -20,7 +20,7 @@ int _printf(const char *format, ...)
 		return (-1);
 
 
-	for (; *format; ++format)
+	while (*format)
 	{
 		if (*format == '%' && *(format + 1) != '\0')
 		{
@@ -44,6 +44,7 @@ int _printf(const char *format, ...)
 			putchar(*format);
 			cnt++;
 		}
+		++format;
 	}
 	va_end(args);
 	return (cnt);
