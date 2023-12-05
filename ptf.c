@@ -11,12 +11,8 @@ int _printf(const char *format, ...)
 	va_list args;
 
 	va_start(args, format);
-
-	if (*format == '\0')
-	{
-		va_end(args);
+	if (!format || (format[0] == '%' && !format[0 + 1]) || *format == '\0')
 		return (-1);
-	}
 
 	int cnt = 0;
 
