@@ -11,5 +11,5 @@ void print_char(va_list args, int *cnt)
 	int c = va_arg(args, int);
 
 	putchar(c);
-	(*cnt++);
+	(*cnt)++;
 }

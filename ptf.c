@@ -9,22 +9,25 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
+	int cnt = 0;
+
+	void (*specifierHandlers[256])(va_list, int *) = {0};
+	void (*handler)(va_list, int *);
 
 	va_start(args, format);
-	if (!format || (format[0] == '%' && !format[0 + 1]) || *format == '\0')
+
+	if (*format == '\0' && format == NULL)
 		return (-1);
 
-	int cnt = 0;
 
 	for (; *format; ++format)
 	{
 		if (*format == '%' && *(format + 1) != '\0')
 		{
 			++format;
-			void (*specifierHandlers[256])(va_list, int *) = {0};
 			specifierHandlers['c'] = print_char;
 			specifierHandlers['s'] = print_str;
-			void (*handler)(va_list, int *) = specifierHandlers[(unsigned char)*format];
+			handler = specifierHandlers[(unsigned char)*format];
 
 			if (handler != NULL)
 			{
