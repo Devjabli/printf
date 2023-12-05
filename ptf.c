@@ -6,51 +6,38 @@
  * Return: cnt
 */
 
-
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int cnt = 0;
 
 	va_start(args, format);
 
-
 	if (*format == '\0')
-		return (-1);
-
-	while (*format)
 	{
-		if (*format == '%')
+		va_end(args);
+		return (-1);
+	}
+
+	int cnt = 0;
+
+	for (; *format; ++format)
+	{
+		if (*format == '%' && *(format + 1) != '\0')
 		{
-			format++;
+			++format;
+			void (*specifierHandlers[256])(va_list, int *) = {0};
+			specifierHandlers['c'] = print_char;
+			specifierHandlers['s'] = print_str;
+			void (*handler)(va_list, int *) = specifierHandlers[(unsigned char)*format];
 
-			switch (*format)
+			if (handler != NULL)
 			{
-				case 'c':
-					{
-						int c = va_arg(args, int);
-
-						putchar(c);
-						cnt++;
-						break;
-					}
-				case 's':
-					{
-						char *str = va_arg(args, char *);
-
-						fputs(str, stdout);
-						cnt += strlen(str);
-						break;
-					}
-				case '%':
-					putchar('%');
-					cnt++;
-					break;
-				default:
-					putchar('%');
-					putchar(*format);
-					cnt += 2;
-					break;
+				handler(args, &cnt);
+			}
+			else
+			{
+				putchar(*format);
+				cnt++;
 			}
 		}
 		else
@@ -58,9 +45,7 @@ int _printf(const char *format, ...)
 			putchar(*format);
 			cnt++;
 		}
-		format++;
 	}
 	va_end(args);
 	return (cnt);
 }
-

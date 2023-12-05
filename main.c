@@ -1,6 +1,12 @@
 #include "main.h"
 
-int main()
+/**
+ * main - Entry point
+ *
+ * Return: Always 0
+ */
+
+int main(void)
 {
 	int len;
 	int len2;
@@ -11,6 +17,4 @@ int main()
 	printf("String:[%s]\n", "I am a string !");
 	len = _printf("Percent:[%%]\n");
 	len2 = printf("Percent:[%%]\n");
-	_printf("Negative:[%d]\n", -762534);
-	printf("Negative:[%d]\n", -762534);
 }
