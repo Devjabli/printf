@@ -22,7 +22,7 @@ int _printf(const char *format, ...)
 
 	while (*format)
 	{
-		if (*format == '%')
+		if (*format == '%' && *(format + 1) != '\0')
 		{
 			++format;
 
