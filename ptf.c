@@ -16,7 +16,7 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	if (*format == '\0' && format == NULL)
+	if (format == NULL)
 		return (-1);
 
 
