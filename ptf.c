@@ -18,8 +18,6 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 		return (-1);
-
-
 	while (*format)
 	{
 		if (*format == '%')
@@ -28,6 +26,8 @@ int _printf(const char *format, ...)
 			specifierHandlers['c'] = print_char;
 			specifierHandlers['s'] = print_str;
 			specifierHandlers['%'] = print_percint;
+			specifierHandlers['d'] = print_number;
+			specifierHandlers['i'] = print_number;
 			handler = specifierHandlers[(unsigned char)*format];
 			if (handler != NULL)
 			{

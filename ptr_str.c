@@ -10,6 +10,10 @@ void print_str(va_list args, int *cnt)
 {
 	char *str = va_arg(args, char *);
 
-	fputs(str, stdout);
-	*cnt += strlen(str);
+	while (*str)
+	{
+		putchar(*str);
+		str++;
+		(*cnt)++;
+	}
 }
