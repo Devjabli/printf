@@ -11,7 +11,7 @@ int _printf(const char *format, ...)
 	va_list args;
 	int cnt = 0;
 
-	void (*specifierHandlers[256])(va_list, int *) = {0};
+	void (*specifierHandlers[300])(va_list, int *) = {0};
 	void (*handler)(va_list, int *);
 
 	va_start(args, format);
@@ -22,9 +22,10 @@ int _printf(const char *format, ...)
 
 	while (*format)
 	{
-		if (*format == '%' && *(format + 1) != '\0')
+		if (*format == '%')
 		{
 			++format;
+
 			specifierHandlers['c'] = print_char;
 			specifierHandlers['s'] = print_str;
 			handler = specifierHandlers[(unsigned char)*format];
