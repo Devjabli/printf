@@ -8,7 +8,8 @@
 
 int _printf(const char *format, ...);
 
-void print_str(va_list ags, int *cnt);
+void print_str(va_list args, int *cnt);
 void print_char(va_list args, int *cnt);
+void print_percint(va_list args, int *cnt);
 
 #endif

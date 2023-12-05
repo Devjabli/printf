@@ -27,8 +27,8 @@ int _printf(const char *format, ...)
 			++format;
 			specifierHandlers['c'] = print_char;
 			specifierHandlers['s'] = print_str;
+			specifierHandlers['%'] = print_percint;
 			handler = specifierHandlers[(unsigned char)*format];
-
 			if (handler != NULL)
 			{
 				handler(args, &cnt);
