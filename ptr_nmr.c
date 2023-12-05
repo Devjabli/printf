@@ -12,5 +12,5 @@ void print_number(va_list args, int *cnt)
 	int x = va_arg(args, int);
 
 	prt_x = print_intg(x);
-	cnt++;
+	cnt += prt_x;
 }
