@@ -22,10 +22,9 @@ int _printf(const char *format, ...)
 
 	while (*format)
 	{
-		if (*format == '%' && *(format + 1) != '\0')
+		if (*format == '%')
 		{
 			++format;
-
 			specifierHandlers['c'] = print_char;
 			specifierHandlers['s'] = print_str;
 			handler = specifierHandlers[(unsigned char)*format];
