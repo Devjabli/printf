@@ -11,7 +11,7 @@ int _printf(const char *format, ...)
 	va_list args;
 	int cnt = 0;
 
-	void (*specifierHls[BUFFER_SIZE])(va_list, int *) = {0};
+	void (*specifierHls[BUFFER_SIZE])(va_list, int *);
 	void (*hlr)(va_list, int *);
 
 	va_start(args, format);
