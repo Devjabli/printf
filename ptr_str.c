@@ -10,10 +10,9 @@ void print_str(va_list args, int *cnt)
 {
 	char *str = va_arg(args, char *);
 
-	while (*str)
+	for (int i = 0; str[i] != '\0'; i++)
 	{
-		putchar(*str);
-		str++;
+		putchar(str[i]);
 		(*cnt)++;
 	}
 }
