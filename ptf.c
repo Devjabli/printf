@@ -11,8 +11,8 @@ int _printf(const char *format, ...)
 	va_list args;
 	int cnt = 0;
 
-	void (*specifierHandlers[300])(va_list, int *) = {0};
-	void (*handler)(va_list, int *);
+	void (*specifierHls[BUFFER_SIZE])(va_list, int *) = {0};
+	void (*hlr)(va_list, int *);
 
 	va_start(args, format);
 
@@ -23,15 +23,15 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			++format;
-			specifierHandlers['c'] = print_char;
-			specifierHandlers['s'] = print_str;
-			specifierHandlers['%'] = print_percint;
-			specifierHandlers['d'] = print_number;
-			specifierHandlers['i'] = print_number;
-			handler = specifierHandlers[(unsigned char)*format];
-			if (handler != NULL)
+			specifierHls['c'] = print_char;
+			specifierHls['s'] = print_str;
+			specifierHls['%'] = print_percint;
+			specifierHls['d'] = print_number;
+			specifierHls['i'] = print_number;
+			hlr = specifierHls[(unsigned char)*format];
+			if (hlr != NULL)
 			{
-				handler(args, &cnt);
+				hlr(args, &cnt);
 			}
 			else
 			{
